@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, onUnmounted } from 'vue'
 import { useCartStore } from '../stores/cart'
 import CartItem from './CartItem.vue'
 
@@ -101,7 +101,15 @@ const handleClearCart = (): void => {
 }
 
 // Close drawer on escape key
+let cleanupEscape: (() => void) | null = null
+
 watch(() => props.isOpen, (isOpen) => {
+  // Cleanup previous listener if it exists
+  if (cleanupEscape) {
+    cleanupEscape()
+    cleanupEscape = null
+  }
+
   if (isOpen) {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -110,10 +118,16 @@ watch(() => props.isOpen, (isOpen) => {
     }
     document.addEventListener('keydown', handleEscape)
     
-    // Cleanup
-    return () => {
+    cleanupEscape = () => {
       document.removeEventListener('keydown', handleEscape)
     }
+  }
+})
+
+// Cleanup on component unmount
+onUnmounted(() => {
+  if (cleanupEscape) {
+    cleanupEscape()
   }
 })
 </script>

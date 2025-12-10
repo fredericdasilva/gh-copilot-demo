@@ -155,9 +155,10 @@ test.describe('Cart Management Feature', () => {
     
     // Clear cart for cleanup
     await page.locator('.cart-icon').click()
+    
+    // Setup dialog handler before clicking
+    page.on('dialog', dialog => dialog.accept())
     await page.locator('.clear-btn').click()
-    await page.on('dialog', dialog => dialog.accept())
-    page.locator('.clear-btn').click()
   })
 
   test('AC-11: Empty cart shows appropriate message', async ({ page }) => {
