@@ -15,14 +15,23 @@ export function useTheme() {
    * 3. Default to light mode
    */
   const initializeTheme = (): void => {
-    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null
-    
-    if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark')) {
-      theme.value = storedTheme
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme.value = 'dark'
-    } else {
-      theme.value = 'light'
+    try {
+      const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null
+      
+      if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark')) {
+        theme.value = storedTheme
+      } else if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme.value = 'dark'
+      } else {
+        theme.value = 'light'
+      }
+    } catch (error) {
+      // If localStorage access fails, fall back to system preference or light mode
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme.value = 'dark'
+      } else {
+        theme.value = 'light'
+      }
     }
     
     applyTheme(theme.value)
@@ -44,7 +53,12 @@ export function useTheme() {
 
   // Watch for theme changes and persist to localStorage
   watch(theme, (newTheme) => {
-    localStorage.setItem(THEME_STORAGE_KEY, newTheme)
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, newTheme)
+    } catch (error) {
+      // Silently fail if localStorage is unavailable
+      console.warn('Failed to save theme preference to localStorage:', error)
+    }
     applyTheme(newTheme)
   })
 
