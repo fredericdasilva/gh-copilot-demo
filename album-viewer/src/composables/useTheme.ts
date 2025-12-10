@@ -9,6 +9,15 @@ const theme = ref<Theme>('light')
 
 export function useTheme() {
   /**
+   * Check if dark mode is preferred by the system
+   */
+  const isSystemDarkMode = (): boolean => {
+    return typeof window !== 'undefined' && 
+           window.matchMedia && 
+           window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+
+  /**
    * Initialize theme based on:
    * 1. Stored preference in localStorage
    * 2. System preference (prefers-color-scheme)
@@ -20,18 +29,14 @@ export function useTheme() {
       
       if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark')) {
         theme.value = storedTheme
-      } else if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      } else if (isSystemDarkMode()) {
         theme.value = 'dark'
       } else {
         theme.value = 'light'
       }
     } catch (error) {
       // If localStorage access fails, fall back to system preference or light mode
-      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        theme.value = 'dark'
-      } else {
-        theme.value = 'light'
-      }
+      theme.value = isSystemDarkMode() ? 'dark' : 'light'
     }
     
     applyTheme(theme.value)
@@ -56,7 +61,7 @@ export function useTheme() {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, newTheme)
     } catch (error) {
-      // Silently fail if localStorage is unavailable
+      // Log warning if localStorage is unavailable (e.g., private browsing, quota exceeded)
       console.warn('Failed to save theme preference to localStorage:', error)
     }
     applyTheme(newTheme)
