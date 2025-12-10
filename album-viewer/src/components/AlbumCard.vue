@@ -44,17 +44,17 @@ const handleImageError = (event: Event): void => {
 
 <style scoped>
 .album-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
 .album-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .album-image {
@@ -79,7 +79,7 @@ const handleImageError = (event: Event): void => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--bg-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,19 +94,19 @@ const handleImageError = (event: Event): void => {
 .play-button {
   width: 60px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--play-btn-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #667eea;
+  color: var(--play-btn-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .play-button:hover {
-  background: white;
+  background: var(--play-btn-hover-bg);
   transform: scale(1.1);
 }
 
@@ -117,13 +117,13 @@ const handleImageError = (event: Event): void => {
 .album-title {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #333;
+  color: var(--text-primary);
   margin: 0 0 0.5rem 0;
   line-height: 1.3;
 }
 
 .album-artist {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin: 0 0 1rem 0;
 }
@@ -137,7 +137,7 @@ const handleImageError = (event: Event): void => {
 .price {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #667eea;
+  color: var(--accent-primary);
 }
 
 .album-actions {
@@ -158,24 +158,24 @@ const handleImageError = (event: Event): void => {
 }
 
 .btn-primary {
-  background: #667eea;
-  color: white;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
 }
 
 .btn-primary:hover {
-  background: #5a6fd8;
+  background: var(--btn-primary-hover);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #667eea;
-  border: 2px solid #667eea;
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 2px solid var(--border-solid);
 }
 
 .btn-secondary:hover {
-  background: #667eea;
-  color: white;
+  background: var(--btn-secondary-hover);
+  color: var(--btn-secondary-hover-text);
   transform: translateY(-2px);
 }
 
