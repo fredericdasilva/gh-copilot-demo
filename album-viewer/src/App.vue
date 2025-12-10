@@ -1,8 +1,13 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1>🎵 Album Collection</h1>
-      <p>Discover amazing music albums</p>
+      <div class="header-content">
+        <div class="header-text">
+          <h1>🎵 Album Collection</h1>
+          <p>Discover amazing music albums</p>
+        </div>
+        <ThemeToggle />
+      </div>
     </header>
 
     <main class="main">
@@ -31,6 +36,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import AlbumCard from './components/AlbumCard.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
 import type { Album } from './types/album'
 
 const albums = ref<Album[]>([])
@@ -65,7 +71,20 @@ onMounted(() => {
 .header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--text-on-primary);
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-text {
+  flex: 1;
+  max-width: 600px;
 }
 
 .header h1 {
@@ -90,14 +109,14 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 4rem;
-  color: white;
+  color: var(--text-on-primary);
 }
 
 .spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border: 4px solid var(--spinner-border);
+  border-top: 4px solid var(--spinner-border-top);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
@@ -111,7 +130,7 @@ onMounted(() => {
 .error {
   text-align: center;
   padding: 4rem;
-  color: white;
+  color: var(--text-on-primary);
 }
 
 .error p {
@@ -120,9 +139,9 @@ onMounted(() => {
 }
 
 .retry-btn {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 2px solid white;
+  background: var(--btn-retry-bg);
+  color: var(--text-on-primary);
+  border: 2px solid var(--theme-toggle-border);
   padding: 0.75rem 2rem;
   border-radius: 25px;
   font-size: 1rem;
@@ -131,8 +150,8 @@ onMounted(() => {
 }
 
 .retry-btn:hover {
-  background: white;
-  color: #667eea;
+  background: var(--btn-retry-hover-bg);
+  color: var(--btn-retry-hover-text);
 }
 
 .albums-grid {
@@ -149,6 +168,11 @@ onMounted(() => {
   
   .header h1 {
     font-size: 2rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
   }
   
   .albums-grid {

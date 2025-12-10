@@ -1,0 +1,126 @@
+/* CSS Variables for Theme System */
+
+:root {
+  /* Transition for smooth theme switching */
+  --theme-transition: all 0.3s ease;
+}
+
+/* Light Theme (Default) */
+:root,
+[data-theme="light"] {
+  /* Background colors */
+  --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.95);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+  
+  /* Text colors */
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-on-primary: white;
+  --text-muted: rgba(255, 255, 255, 0.9);
+  
+  /* Border colors */
+  --border-color: rgba(255, 255, 255, 0.2);
+  --border-solid: #667eea;
+  
+  /* Accent colors */
+  --accent-primary: #667eea;
+  --accent-primary-hover: #5a6fd8;
+  --accent-secondary: transparent;
+  
+  /* Button colors */
+  --btn-primary-bg: #667eea;
+  --btn-primary-hover: #5a6fd8;
+  --btn-primary-text: white;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-hover: #667eea;
+  --btn-secondary-text: #667eea;
+  --btn-secondary-hover-text: white;
+  --btn-retry-bg: rgba(255, 255, 255, 0.2);
+  --btn-retry-hover-bg: white;
+  --btn-retry-hover-text: #667eea;
+  
+  /* Card shadows */
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+  
+  /* Theme toggle colors */
+  --theme-toggle-bg: rgba(255, 255, 255, 0.2);
+  --theme-toggle-border: white;
+  --theme-toggle-color: white;
+  --theme-toggle-hover-bg: white;
+  --theme-toggle-shadow: rgba(0, 0, 0, 0.2);
+  
+  /* Play button */
+  --play-btn-bg: rgba(255, 255, 255, 0.9);
+  --play-btn-hover-bg: white;
+  --play-btn-color: #667eea;
+  
+  /* Spinner */
+  --spinner-border: rgba(255, 255, 255, 0.3);
+  --spinner-border-top: white;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Background colors */
+  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --bg-secondary: rgba(30, 30, 46, 0.95);
+  --bg-overlay: rgba(0, 0, 0, 0.85);
+  
+  /* Text colors */
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-on-primary: #e0e0e0;
+  --text-muted: rgba(224, 224, 224, 0.9);
+  
+  /* Border colors */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-solid: #7c8adb;
+  
+  /* Accent colors */
+  --accent-primary: #7c8adb;
+  --accent-primary-hover: #8d9ae6;
+  --accent-secondary: rgba(124, 138, 219, 0.1);
+  
+  /* Button colors */
+  --btn-primary-bg: #7c8adb;
+  --btn-primary-hover: #8d9ae6;
+  --btn-primary-text: #1a1a2e;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-hover: #7c8adb;
+  --btn-secondary-text: #7c8adb;
+  --btn-secondary-hover-text: #1a1a2e;
+  --btn-retry-bg: rgba(124, 138, 219, 0.2);
+  --btn-retry-hover-bg: #7c8adb;
+  --btn-retry-hover-text: #1a1a2e;
+  
+  /* Card shadows */
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.7);
+  
+  /* Theme toggle colors */
+  --theme-toggle-bg: rgba(124, 138, 219, 0.2);
+  --theme-toggle-border: #7c8adb;
+  --theme-toggle-color: #e0e0e0;
+  --theme-toggle-hover-bg: #7c8adb;
+  --theme-toggle-shadow: rgba(124, 138, 219, 0.4);
+  
+  /* Play button */
+  --play-btn-bg: rgba(124, 138, 219, 0.9);
+  --play-btn-hover-bg: #7c8adb;
+  --play-btn-color: #1a1a2e;
+  
+  /* Spinner */
+  --spinner-border: rgba(124, 138, 219, 0.3);
+  --spinner-border-top: #7c8adb;
+}
+
+/* Apply transitions to elements that should animate during theme change */
+body,
+.app,
+.album-card,
+.btn,
+.theme-toggle {
+  transition: var(--theme-transition);
+}
