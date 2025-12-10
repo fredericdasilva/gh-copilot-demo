@@ -11,7 +11,10 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
     "axios": "^1.6.0",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "vue": "^3.4.0"
   },
   "devDependencies": {
