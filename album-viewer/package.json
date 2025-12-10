@@ -8,16 +8,23 @@
     "preview": "vite preview",
     "serve": "vite preview",
     "type-check": "vue-tsc --noEmit",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
     "axios": "^1.6.0",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/node": "^24.3.0",
     "@vitejs/plugin-vue": "^5.0.0",
     "@vue/tsconfig": "^0.8.1",
+    "playwright": "^1.57.0",
     "typescript": "^5.9.2",
     "vite": "^5.0.0",
     "vitest": "^2.0.0",

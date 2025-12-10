@@ -13,7 +13,7 @@ export default defineConfig({
     port: 3001,
     proxy: {
       '/albums': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:5000',
         changeOrigin: true
       }
     }
